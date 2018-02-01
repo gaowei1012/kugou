@@ -5,6 +5,8 @@ import {connect} from 'react-redux'
 
 import {bindActionCreators} from 'redux'
 
+// import './index.scss'
+
 class Header extends React.Component {
     toggleQuery() {
 
