@@ -2,17 +2,19 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {Icon} from 'antd-mobile'
 import {connect} from 'react-redux'
+import * as playerAction from '../../redux/action/Index'
+import {bindActionCreators} from 'redux'
 
 import {bindActionCreators} from 'redux'
 
-// import './index.scss'
+import './index.css'
 
 class Header extends React.Component {
     toggleQuery() {
 
     }
     hideQuery() {
-
+        this.props.changeSongActions.query()
     }
 
     render() {

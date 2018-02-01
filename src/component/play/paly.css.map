@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,IAAK;EACH,MAAM,EAAE,IAAI;EACZ,QAAI;IACF,aAAa,EAAE,IAAI",
+"sources": ["paly.scss"],
+"names": [],
+"file": "paly.css"
+}
