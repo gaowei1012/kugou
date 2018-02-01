@@ -1,4 +1,4 @@
-.header{
+.header {
   height: 45px;
   .logo-container {
     padding: 10px;
@@ -10,21 +10,20 @@
     left: 0;
     width: 100%;
     z-index: 1050;
-    .home{
-      img{
+    .home {
+      img {
         height: 100%;
       }
     }
   }
 
-
-  .headnav{
+  .headnav {
     margin-top: 45px;
   }
-  .query-icon{
+  .query-icon {
     float: right;
     width: 42px;
-    color: #ffffff;
+    color: #fff;
     margin-top: 2px;
   }
 }

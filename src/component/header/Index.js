@@ -11,10 +11,15 @@ import './index.css'
 
 class Header extends React.Component {
     toggleQuery() {
-
+        var showQuery = !this.props.showQuery;
+        this.props.changeSongActions.query({
+            showQuery: showQuery
+        })
     }
     hideQuery() {
-        this.props.changeSongActions.query()
+        this.props.changeSongActions.query({
+            showQuery: false
+        })
     }
 
     render() {
@@ -35,11 +40,13 @@ class Header extends React.Component {
 
 
 function mapStateToProps(state) {
-    
+    return {showQuery: state.change_song.showQuery}
 }
 
 function mapDispatchToProps(dispatch) {
-
+    return {
+        changeSongActions: bindActionCreators(playerAction, dispatch)
+    }
 }
 
 export default connect (
