@@ -1,8 +1,8 @@
-export const SET_List = 'SET_List'
-export const PLAY_SONG = 'PLAY_SONG'
-export const PLAY_STATE = 'PLAY_STATE'
-export const PLAY_LOADING = 'PLAY_LODING'
-export const TOGGLE_QUERY = 'TOGGLE_QUERY'
+export const SET_List = 'SET_List';
+export const PLAY_SONG = 'PLAY_SONG';
+export const PLAY_STATE = 'PLAY_STATE';
+export const PLAY_LOADING = 'PLAY_LODING';
+export const TOGGLE_QUERY = 'TOGGLE_QUERY';
 
 export function setList(data) {
     return {
