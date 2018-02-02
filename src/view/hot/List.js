@@ -94,30 +94,88 @@ class HotList extends React.Component {
    }
 
    render() {
-        if (this.state.scroller) {
-            this.state.scroller.on('scroll', pos => {
+       if (this.state.scroller) {
+           this.state.scroller.on('scroll', pos => {
 
-            })
+           })
 
-            this.state.scroller.on('scrollEnd', pos => {
+           this.state.scroller.on('scrollEnd', pos => {
 
-            })
+           })
 
-            this.state.scroller.on('pullingDown', () => {
-                // huoqushuju
-                setTimeout(() => {
-                    this.state.scroller.finshPullDown()
-                    this.state.scroller.scrollTo(0,0,0)
-                },1000)
-            })
+           this.state.scroller.on('pullingDown', () => {
+               // 获取最新数据
+               setTimeout(() => {
+                   this.state.scroller.finshPullDown()
+                   this.state.scroller.scrollTo(0, 0, 0)
+               }, 1000)
+           })
 
-        }
+           this.state.scroller.on('pullingUp', () => {
+               const count = this.state.page * this.state.pageSize
+               if (this.state.enablescroll && count < this.state.total) {
+                   this.setState({
+                       enablescroll: false,
+                       page: this.state.page + 1,
+                       load: '加载中...'
+                   })
+                   this.getDate(() => {
+                       this.state.scroller.finishPullUp()
+                       this.setState({
+                           enablescroll: true
+                       })
+                   })
+               }
+           })
+       }
 
-        return(
+       const List = this.state.list.length > 0 && this.state.list.map((item, index) => {
 
-        );
+           <div className="hot-item" key={index}
+                onClick={this.props.play.bind(this, this.state.list, index, item.hash)}>
+               <div className="name text-hide"> {item.filename} </div>
+               <div className="icon">
+                   <Icon type="right"/>
+               </div>
+           </div>
+
+       });
+
+       const kvImg = this.state.info.imgurl && this.state.info.imgurl.replace('{size}', '400');
+
+
+       return (
+
+           <div className="hot-list-info">
+               <Title title={this.state.info.specialname} bg={this.state.bg}/>
+               <div className="hot-songs-list" ref={(el) => this.list = el}>
+                   <div className="container">
+                       <div className="kv">
+                           <div className="kv-img">
+                               <img src={kvImg} alt=""/>
+                           </div>
+
+                           <div className="desc">
+                               <p className={this.state.show ? 'show-all-desc' : 'show-part-desc'}> {this.state.info.intro} </p>
+                               <div className="icon" onClick={this.toggleDesc.bind(this)}>
+                                   <Icon type={this.state.show ? 'up' : 'down'} size="md"/>
+                               </div>
+                           </div>
+                       </div>
+                       <div className="songs-list">
+                           {List}
+                       </div>
+                   </div>
+               </div>
+               <div className="bottom-state">
+                   {this.state.load}
+               </div>
+           </div>
+
+       );
    }
-
 }
+
+HotList = WrappedComponent(HotList)
 
 export default HotList
